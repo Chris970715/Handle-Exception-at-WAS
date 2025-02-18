@@ -1,4 +1,4 @@
-package hello.exception;
+package hello.exception.servlet;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
