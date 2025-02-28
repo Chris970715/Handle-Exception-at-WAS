@@ -1,5 +1,6 @@
 package hello.exception.api;
 
+import hello.exception.exception_Test.BadRequestException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @RestController
@@ -29,6 +31,16 @@ public class ApiExceptionController {
         log.info("getMember");
         return new MemberDto(id, "hello" + id);
 
+    }
+
+    @GetMapping("/api.response-status-ex1")
+    public String responseStatusEx1(){
+        throw new BadRequestException();
+    }
+
+    @GetMapping("/api.response-status-ex2")
+    public String responseStatusEx2(){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error bad", new IllegalArgumentException());
     }
 
     @Data
